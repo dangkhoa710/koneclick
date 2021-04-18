@@ -3,7 +3,7 @@
 <ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
+					<a href="index.html">Home</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
@@ -45,7 +45,7 @@
 								  <th>Trang chủ</th>
 								  <th></th>
 							  </tr>
-						  </thead>   
+						  </thead>
 						  <tbody>
 						  	@foreach($show_list_item_topic as $key => $list_item_topic)
 							<tr>
@@ -56,28 +56,32 @@
 								<td class="center">{{ $list_item_topic->item_topic_slug }}</td>
 								<td class="center">{{ $list_item_topic->item_topic_amount }}</td>
 
-								@if($list_item_topic->item_topic_index==1)
-								<td class="center">
-									<a href="{{URL::to('/index-hidden-item-topic/'.$list_item_topic->item_topic_id)}}" class="btn btn-success">Ẩn</a>
-								</td>
-								@else
-								<td class="center">
-									<a href="{{URL::to('/index-show-item-topic/'.$list_item_topic->item_topic_id)}}" class="btn btn-primary">Hiện</a>
-								</td>
-								@endif
+{{--								@if($list_item_topic->item_topic_index==1)--}}
+{{--								<td class="center">--}}
+{{--									<a href="{{URL::to('/index-hidden-item-topic/'.$list_item_topic->item_topic_id)}}" class="btn btn-success">Ẩn</a>--}}
+{{--								</td>--}}
+{{--								@else--}}
+{{--								<td class="center">--}}
+{{--									<a href="{{URL::to('/index-show-item-topic/'.$list_item_topic->item_topic_id)}}" class="btn btn-primary">Hiện</a>--}}
+{{--								</td>--}}
+{{--								@endif--}}
+
+                                <td>
+                                    <input type="checkbox" class="js-quantityCheckBox" data-id="{{$list_item_topic->item_topic_id}}"  @if($list_item_topic->item_topic_index=="1") checked @endif >
+                                </td>
 
 								<td class="center">
 									<a class="btn btn-info" href="{{URL::to('/edit-item-topic/'.$list_item_topic->item_topic_id)}}">
-										<i class="halflings-icon white edit"></i>  
+										<i class="halflings-icon white edit"></i>
 									</a>
 									<a onclick="return confirm('Bạn có chắc là muốn xóa item topic này ko ?')" class="btn btn-danger" href="{{URL::to('/del-item-topic/'.$list_item_topic->item_topic_id)}}">
-										<i class="halflings-icon white trash"></i> 
+										<i class="halflings-icon white trash"></i>
 									</a>
 								</td>
 							</tr>
 							@endforeach
 						  </tbody>
-					  </table>            
+					  </table>
 					</div>
 				</div><!--/span-->
 			</div>

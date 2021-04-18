@@ -4,7 +4,7 @@
 				<li>
 					<i class="icon-home"></i>
 					<a href="{{URL::to('/dashboard')}}">Trang chính</a>
-					<i class="icon-angle-right"></i> 
+					<i class="icon-angle-right"></i>
 				</li>
 				<li>
 					<i class="icon-tasks"></i>
@@ -16,12 +16,12 @@
 					<a href="#">Thêm tin tức</a>
 				</li>
 			</ul>
-			
+
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span> <b>Thêm tin</b></h2>
-						
+
 					</div>
 					<?php
 			 $message = Session::get('message');
@@ -46,7 +46,7 @@
 							  <div class="controls">
 								<input required class="input-file uniform_on" id="news_upimg" type="file" name="news_upimg">
 							  </div>
-							</div>  
+							</div>
 
 							<div class="control-group">
 								<label class="control-label">Trang chủ</label>
@@ -54,7 +54,7 @@
 								  	<select name="news_index" id="news_index" data-rel="chosen">
 								  		<option value="1">Hiện</option>
 								  		<option value="0">Ẩn</option>
-								  	</select>									
+								  	</select>
 								</div>
 							  </div>
 
@@ -94,11 +94,11 @@
 
 							</div>
 
-						
+
 							<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">Nội dung</label>
 							  <div class="controls">
-								<textarea required id="news_content" name="news_content" ></textarea>
+								<textarea required id="editor"  name="news_content" ></textarea>
 							  </div>
 							</div>
 
@@ -114,7 +114,7 @@
 								<div class="box-content">
 									Định dạng : Bình thường<br>
 									Phông: Mặc định <br>
-									Cỡ chữ : 16<br>. 
+									Cỡ chữ : 16<br>.
 								</div>
 							  </div>
 							</div>
@@ -122,10 +122,10 @@
 
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Đăng tin</button>
-							  <button type="reset" class="btn">Hủy</button>
+                                <a href="{{URL::to('/list-news')}}" class="btn">Hủy</a>
 							</div>
 						  </fieldset>
-						</form>   
+						</form>
 
 					</div>
 				</div><!--/span-->

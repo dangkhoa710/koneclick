@@ -12,7 +12,7 @@ use App\Models\Topic;
 class ItemTopicController extends Controller
 {
 	public function show_add_item_topic(){
-		$show_topic = DB::table('tbl_topic')->orderby('topic_id','desc')->get(); 
+		$show_topic = DB::table('tbl_topic')->orderby('topic_id','desc')->get();
 		return view('admin.show_add_item_topic')
 		->with('show_topic', $show_topic);
 		}
@@ -27,6 +27,8 @@ class ItemTopicController extends Controller
 		$itemtopic->item_topic_slug = $data['item_topic_slug'];
 		$itemtopic->item_topic_describe = $data['item_topic_describe'];
 		$itemtopic->topic_id = $data['list_topic'];
+		$itemtopic->item_topic_amount=0;
+        $itemtopic->item_topic_index=0;
 		$itemtopic->save();
 
 		Session::put('message','	Thêm item topic thành công');
@@ -51,7 +53,7 @@ class ItemTopicController extends Controller
 		->with('edit_item_topic',$edit_item_topic)
 		->with('show_topic',$edit_topic);
 		return view('admin.khung')->with('admin.edit_item_topic',$manager_edit_item_topic);
-		}	
+		}
 
 	public function process_update_item_topic(Request $request,$item_topic_id){
 		$data = $request->all();
@@ -118,32 +120,60 @@ class ItemTopicController extends Controller
 		->orderBy('news_view','desc')
 		->limit(4)->get();
 
+		$doitheme2=DB::table('tbl_theme')->get();
+		foreach($doitheme2 as $key => $a){
+			$doitheme = $a->theme;
+		}
+		//_______
+        $dem=0;
+        include ('simple_html_dom.php');
+        $html = file_get_html("https://vietnamnet.vn/vn/tin-moi-nong/");
+        $link = array();
+        $tieude=array();
+        foreach ($html->find('h3[class=box-subcate-style4-title] a') as $key => $t) {
+            $tieude[]=$t->title;
+            $link[]="https://vietnamnet.vn/".$t->href;
+        }
+        $anh = array();
+        foreach  ($html->find('div[class=box-subcate-style4 m-b-10 clearfix] a img') as $key => $a){
+            $anh[]=$a->src;
+        }
+        $mota = array();
+        foreach ( $html->find('div[class=f-14 box-subcate-style4-lead lead]') as $key => $mt){
+            $mota[]=$mt->plaintext;
+        }
+
+
 		return view('page.show_list_item_topic')
 		->with('show_item',$show_item)
 		->with('show_news_of_item_topic',$show_news_of_item_topic)
 		->with('item_topic_name',$item_topic_name)
 		->with('show_topic_index',$show_topic_index)
 		->with('show_item_topic_index',$show_item_topic_index)
-		->with('show_news_hot',$show_news_hot) 
+		->with('show_news_hot',$show_news_hot)
 		->with('show_view',$show_view)
-		->with('test',$test);
+		->with('test',$test)
+		->with('doitheme',$doitheme)
+        //-------------------------
+        ->with('link',$link)
+        ->with('tieude',$tieude)
+        ->with('mota',$mota)
+        ->with('anh',$anh)
+        ->with('i',$dem);
+         //----------------------------
+
 		}
 
-	public function index_show_item_topic($item_topic_id){
-		DB::table('tbl_item_topic')->where('item_topic_id',$item_topic_id)
-		->update(['item_topic_index'=>1]);
+	public function index_show_item_topic(Request $request){
+		DB::table('tbl_item_topic')->where('item_topic_id',$request->item_topic_id)
+		->update(['item_topic_index'=>$request->tt]);
+        return response("success");
 
-		Session::put('message','Hiện tin thành công');
-		return Redirect::to('list-item-topic');
+//		Session::put('message','Hiện tin thành công');
+//		return Redirect::to('list-item-topic');
 		}
 
-	public function index_hidden_item_topic($item_topic_id){
-		DB::table('tbl_item_topic')->where('item_topic_id',$item_topic_id)
-		->update(['item_topic_index'=>0]);
 
-		Session::put('message',' Ẩn tin thành công');
-		return Redirect::to('list-item-topic');
-		}	
 	public function xuli_search(Request $s){
 		$show_news_of_item_topic = DB::table('tbl_news')
 		->join('tbl_item_topic','tbl_item_topic.item_topic_id','=','tbl_news.item_topic_id')
@@ -172,12 +202,40 @@ class ItemTopicController extends Controller
 		->orderBy('news_view','desc')
 		->limit(4)->get();
 
+		$doitheme2=DB::table('tbl_theme')->get();
+		foreach($doitheme2 as $key => $a){
+			$doitheme = $a->theme;
+		}
+        $dem=0;
+        include ('simple_html_dom.php');
+        $html = file_get_html("https://vietnamnet.vn/vn/tin-moi-nong/");
+        $link = array();
+        $tieude=array();
+        foreach ($html->find('h3[class=box-subcate-style4-title] a') as $key => $t) {
+            $tieude[]=$t->title;
+            $link[]="https://vietnamnet.vn/".$t->href;
+        }
+        $anh = array();
+        foreach  ($html->find('div[class=box-subcate-style4 m-b-10 clearfix] a img') as $key => $a){
+            $anh[]=$a->src;
+        }
+        $mota = array();
+        foreach ( $html->find('div[class=f-14 box-subcate-style4-lead lead]') as $key => $mt){
+            $mota[]=$mt->plaintext;
+        }
+
 		return view('page.show_search')
 		->with('show_item',$show_item)//
 		->with('show_news_of_item_topic',$show_news_of_item_topic)//
 		->with('show_topic_index',$show_topic_index)
 		->with('show_item_topic_index',$show_item_topic_index)
-		->with('show_news_hot',$show_news_hot) 
-		->with('show_view',$show_view);
+		->with('show_news_hot',$show_news_hot)
+		->with('show_view',$show_view)->with('doitheme',$doitheme)
+        //-------------------------
+        ->with('link',$link)
+        ->with('tieude',$tieude)
+        ->with('mota',$mota)
+        ->with('anh',$anh)
+        ->with('i',$dem);
 		}
 }

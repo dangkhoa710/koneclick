@@ -10,18 +10,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReplyCommentController;
 use App\Http\Controllers\CrawlController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-//test
+
+//trang chủ
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
 
@@ -36,7 +27,6 @@ Route::get('/dashboard',[AdminController::class,'show_dashboard']);
 Route::post('/admin-dashboard',[AdminController::class,'dashboard']);
 Route::get('/admin-logout',[AdminController::class,'logout']);
 
-/*_________________________________________________________________________________*/
 
 //admin - news - upload - edit - delete - update
 Route::get('/add-news',[NewsController::class,'show_add_news']);
@@ -48,10 +38,10 @@ Route::get('/list-news',[NewsController::class,'show_list_news']);
 Route::post('/save-news',[NewsController::class,'process_save_news']);
 Route::post('/update-news/{news_id}',[NewsController::class,'process_update_news']);
 
-Route::get('/index-show-news/{news_id}',[NewsController::class,'index_show_news']);
-Route::get('/index-hidden-news/{news_id}',[NewsController::class,'index_hidden_news']);
+Route::post('/index-show-news',[NewsController::class,'index_show_news'])->name('index-show-news');
+//Route::get('/index-hidden-news/{news_id}',[NewsController::class,'index_hidden_news']);
 
-/*_________________________________________________________________________________*/
+
 
 //admin-topic-add-edit-del-update
 Route::get('/add-topic',[TopicController::class,'show_add_topic']);
@@ -64,8 +54,6 @@ Route::post('/save-topic',[TopicController::class,'process_save_topic']);
 Route::post('/update-topic/{topic_id}',[TopicController::class,'process_update_topic']);
 
 
-/*_________________________________________________________________________________*/
-
 //admin-itemtopic-add-edit-del-update
 Route::get('/add-item-topic',[ItemTopicController::class,'show_add_item_topic']);
 Route::get('/edit-item-topic/{item_topic_id}',[ItemTopicController::class,'show_edit_item_topic']);
@@ -76,8 +64,8 @@ Route::get('/list-item-topic',[ItemTopicController::class,'show_list_item_topic'
 Route::post('/save-item-topic',[ItemTopicController::class,'process_save_item_topic']);
 Route::post('/update-item-topic/{item_topic_id}',[ItemTopicController::class,'process_update_item_topic']);
 
-Route::get('/index-show-item-topic/{item_topic_id}',[ItemTopicController::class,'index_show_item_topic']);
-Route::get('/index-hidden-item-topic/{item_topic_id}',[ItemTopicController::class,'index_hidden_item_topic']);
+Route::post('/index-show-item-topic',[ItemTopicController::class,'index_show_item_topic'])->name('index-show-item-topic');
+//Route::get('/index-hidden-item-topic/{item_topic_id}',[ItemTopicController::class,'index_hidden_item_topic']);
 
 //hiển thị tin theo item topic
 Route::get('/show-list-item-topic-index/{item_topic_slug}',[ItemTopicController::class,'show_list_item_topic_index']);
@@ -95,20 +83,21 @@ Route::post('/user-login',[UserController::class,'login']);
 Route::get('/user-logout',[UserController::class,'logout']);
 
 
-
 //bình luận
 Route::post('/save-cmt/{user_id}/{news_id}',[CommentController::class,'save_cmt']);
 
+//reply bình luận
 Route::post('/save-reply-cmt/{user_id}/{news_id}/{cmt_id}',[CommentController::class,'save_reply_cmt']);
 
-//crawl
-Route::get('/crawl-news',[CrawlController::class,'test']);
-
-
+//tìm kiếm
 Route::post('/search',[ItemTopicController::class,'xuli_search']);
 
+//doi_theme
+Route::post('/doigiaodien',[HomeController::class,'doitheme'])->name('doigiaodien');
 
-
+//tài khoản
+Route::get('/list-account',[UserController::class,'list_account']);
+Route::get('/del-acc/{id}',[UserController::class,'del_acc']);
 
 
 

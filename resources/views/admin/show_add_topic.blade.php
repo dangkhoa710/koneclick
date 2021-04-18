@@ -4,7 +4,7 @@
 				<li>
 					<i class="icon-home"></i>
 					<a href="{{URL::to('/dashboard')}}">Trang chính</a>
-					<i class="icon-angle-right"></i> 
+					<i class="icon-angle-right"></i>
 				</li>
 				<li>
 					<i class="icon-tasks"></i>
@@ -17,19 +17,19 @@
 				</li>
 			</ul>
 
-			 
-			
+
+
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span> <b>Thêm topic</b></h2>
-						
+
 					</div>
 
 					<?php
 			 $message = Session::get('message');
 			 if($message){
-			 echo '<span class="text-alert"><h3><b>   '.$message.'</h3></b></span>';
+			 echo '<span class="text-alert"><h3><b>'.$message.'</h3></b></span>';
 			 Session::put('message',null);
 			 }
 			 ?>
@@ -48,16 +48,16 @@
 							<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">Mô tả vắn tắt</label>
 							  <div class="controls">
-								<textarea required  id="topic_describe" name="topic_describe" ></textarea>
+								<textarea required  id="editor" name="topic_describe" ></textarea>
 							  </div>
 							</div>
 
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Thêm topic</button>
-							  <button type="reset" class="btn">Hủy</button>
+                                <a href="{{URL::to('/list-topic')}}" class="btn">Hủy</a>
 							</div>
 						  </fieldset>
-						</form>   
+						</form>
 
 					</div>
 				</div><!--/span-->

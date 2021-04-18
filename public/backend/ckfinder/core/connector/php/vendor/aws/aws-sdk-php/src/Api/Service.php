@@ -23,7 +23,7 @@ class Service extends AbstractModel
     private $operations = [];
 
     /** @var array */
-    private $paginators = null;
+    private $resultss = null;
 
     /** @var array */
     private $waiters = null;

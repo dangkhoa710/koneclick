@@ -4,7 +4,7 @@
 				<li>
 					<i class="icon-home"></i>
 					<a href="{{URL::to('/dashboard')}}">Trang chính</a>
-					<i class="icon-angle-right"></i> 
+					<i class="icon-angle-right"></i>
 				</li>
 				<li>
 					<i class="icon-tasks"></i>
@@ -16,12 +16,12 @@
 					<a href="#">Chỉnh sửa tin tức</a>
 				</li>
 			</ul>
-			
+
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span> <b>Chỉnh sửa tin</b></h2>
-						
+
 					</div>
 					<?php
 					 $message = Session::get('message');
@@ -51,7 +51,7 @@
 							  </div>
 					 			 <img src="{{URL::to('public/backend/img_title/'.$edit_newss->news_img_upload)}}" height="200" width="200">
 							  <input type="hidden" name="tencu" value="{{$edit_newss->news_img_upload}}">
-							</div> 
+							</div>
 
 							<div class="control-group">
 								<label class="control-label">Trang chủ</label>
@@ -113,11 +113,11 @@
 							  </div>
 							</div>
 
-						
+
 							<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">Nội dung</label>
 							  <div class="controls">
-								<textarea  id="news_content" name="news_content" >
+								<textarea  id="editor"  name="news_content" >
 									{{$edit_newss->news_content}}
 								</textarea>
 							  </div>
@@ -143,10 +143,10 @@
 
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Cập nhật tin</button>
-							  <button type="reset" class="btn">Hủy</button>
+                                <a href="{{URL::to('/list-news')}}" class="btn">Hủy</a>
 							</div>
 						  </fieldset>
-						</form>   
+						</form>
 						@endforeach
 					</div>
 				</div><!--/span-->

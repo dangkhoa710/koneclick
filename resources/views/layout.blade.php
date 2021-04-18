@@ -9,115 +9,180 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>K-ONE Click - Đi cảnh thời gian rảnh  </title>
+    <title>K-ONE Click - Đi cảnh thời gian rảnh </title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{asset('public/frontend/favicon.ico')}}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{asset('public/frontend/style.css')}}">
+    @if($doitheme=="1")
+        <link rel="stylesheet" href="{{asset('public/frontend/style.css')}}">
+    @elseif($doitheme=="2")
+        <link rel="stylesheet" href="{{asset('public/frontend/style2.css')}}">
+    @endif
     <style type="text/css">
-        .seo_content{
+        .seo_content {
             text-overflow: ellipsis;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-            }
-        .hiencmt{
-            overflow:hidden;
-             transition: max-height 0.2s ease-out;
-            }
+            overflow: hidden;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+        }
+
+        .hiencmt {
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
     </style>
     <script src="jquey.js"></script>
     <script>
-var acc = document.getElementsByClassName("thugon");
-var i;
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
-</script>   
-<script >
-    function checkPasswordMatch() {
-    var password = $("#password").val();
-    var confirmPassword = $("#repassword").val();
+        var acc = document.getElementsByClassName("thugon");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    <script>
+        function checkPasswordMatch() {
+            var password = $("#password").val();
+            var confirmPassword = $("#repassword").val();
 
-    if (password != confirmPassword)
-        $("#divCheckPasswordMatch").html("Mật khẩu không khớp");
-    else
-        $("#divCheckPasswordMatch").html("Mật khẩu khớp");
-}
-</script>
-<script>
-function doimau() {
-$('link[href="{{asset('public/frontend/style.css')}}"]').attr('href',"{{asset('public/frontend/style2.css')}}");
-}
+            if (password != confirmPassword)
+                $("#divCheckPasswordMatch").html("Mật khẩu không khớp");
+            else
+                $("#divCheckPasswordMatch").html("Mật khẩu khớp");
+        }
+    </script>
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
 
-</script>
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
 
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+@include("elements.menu")
+
+<section class="vizew-post-area mb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7 col-lg-8">
+                @yield('content')
+            </div>
+            @include("elements.sliderbarleft")
         </div>
     </div>
-    <button onclick="doimau()">doi</button><br />
-    <!-- ##### Header Area Start ##### -->
-    @include("elements.menu")
-    <!-- ##### Header Area End ##### -->
+</section>
 
-    <!-- ##### Hero Area Start ##### -->
+@include("elements.footer")
 
-    <!-- ##### Hero Area End ##### -->
+<script src="{{asset('public/frontend/js/jquery/jquery-2.2.4.min.js')}}"></script>
+<!-- Popper js -->
+<script src="{{asset('public/frontend/js/bootstrap/popper.min.js')}}"></script>
+<!-- Bootstrap js -->
+<script src="{{asset('public/frontend/js/bootstrap/bootstrap.min.js')}}"></script>
+<!-- All Plugins js -->
+<script src="{{asset('public/frontend/js/plugins/plugins.js')}}"></script>
+<!-- Active js -->
+<script src="{{asset('public/frontend/js/active.js')}}"></script>
+<script type="text/javascript">
+    $('.js-quantityCheckBox').on('click', function (e) {
+        let mode = $(this).prop("checked") == true ? 1 : 2;
+         $.ajax({
+            url: '{{ route('doigiaodien') }}',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                _token: '{{ csrf_token() }}',
+                theme: mode,
+            },
+            success: function (res) {
 
-    <!-- ##### Trending Posts Area Start ##### -->
-    
-    <!-- ##### Trending Posts Area End ##### -->
+            },
+             error: function (err) {
+                 window.location.reload();
+             }
+        });
 
-    <!-- ##### Vizew Post Area Start ##### -->
-
-    <section class="vizew-post-area mb-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-7 col-lg-8">
-                    @yield('content')
-                </div>
-
-                @include("elements.sliderbarleft")
-            </div>
-        </div>
-    </section>
-    <!-- ##### Vizew Psot Area End ##### -->
-
-    <!-- ##### Footer Area Start ##### -->
-    @include("elements.footer")
-    <!-- ##### Footer Area End ##### -->
-
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="{{asset('public/frontend/js/jquery/jquery-2.2.4.min.js')}}"></script>
-    <!-- Popper js -->
-    <script src="{{asset('public/frontend/js/bootstrap/popper.min.js')}}"></script>
-    <!-- Bootstrap js -->
-    <script src="{{asset('public/frontend/js/bootstrap/bootstrap.min.js')}}"></script>
-    <!-- All Plugins js -->
-    <script src="{{asset('public/frontend/js/plugins/plugins.js')}}"></script>
-    <!-- Active js -->
-    <script src="{{asset('public/frontend/js/active.js')}}"></script>
+    });
+</script>
 </body>
 
 </html>

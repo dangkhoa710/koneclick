@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use File;
+
 session_start();
 
 class UserController extends Controller
@@ -33,11 +34,14 @@ class UserController extends Controller
 	->orderBy('news_view','desc')
 	->limit(4)->get();
 
+	$doitheme=DB::table('tbl_theme')->first();
+
 	 return view('user.login')
 	->with('show_news_hot',$show_news_hot)
 	->with('show_topic_index',$show_topic_index)
 	->with('show_item_topic_index',$show_item_topic_index)
 	->with('show_view',$show_view)
+	->with('doitheme',$doitheme->theme)
 	 ;
 
 	}
@@ -63,11 +67,13 @@ class UserController extends Controller
 	->orderBy('news_view','desc')
 	->limit(4)->get();
 
+	$doitheme=DB::table('tbl_theme')->first();
 	 return view('user.dangky')
 	->with('show_news_hot',$show_news_hot)
 	->with('show_topic_index',$show_topic_index)
 	->with('show_item_topic_index',$show_item_topic_index)
 	->with('show_view',$show_view)
+	->with('doitheme',$doitheme->theme)
 	 ;
 	}
 
@@ -105,12 +111,11 @@ class UserController extends Controller
 		['password',$password],
 	])->first();
 
-	if($result){			
+	if($result){
 		Session::put('user_name',$result->name);
 		Session::put('user_id',$result->id);
 		return Redirect::to('/home');
 	}else{
-
 		Session::put('message','Mật khẩu hoặc tên tài khoản không đúng, nhập lại !');
 		return Redirect::to('/show-login');
 	}
@@ -123,4 +128,15 @@ class UserController extends Controller
 	 return Redirect::to('home');
 
 	 }
+	 public function list_account()
+     {
+         $show_lists =  DB :: table('tbl_user')->orderBY('id','desc')->get();
+          return view('admin.show_list_account')
+              ->with('show_lists',$show_lists);
+     }
+     public function del_acc($id)
+     {
+         DB::table('tbl_user')->where('id',$id)->delete();
+         return redirect::to('/list-account');
+     }
 }

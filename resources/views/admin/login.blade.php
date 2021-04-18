@@ -55,14 +55,14 @@
 						<a href="{{URL::to('/home')}}"><i class="halflings-icon home"></i></a>
 						<a href="#"><i class="halflings-icon cog"></i></a>
 					</div>
-					<p><h2>Đăng nhập email admin</h2></p>
+					<b><h4 class="text-center">Đăng nhập tài khoản	 admin</h4></b>
 					<form class="form-horizontal" action="{{URL::to('/admin-dashboard')}}" method="post">
 						{{ csrf_field() }}
 						<fieldset>
 							
 							<div class="input-prepend" title="Username">
 								<span class="add-on"><i class="halflings-icon user"></i></span>
-								<input class="input-large span10" name="username" id="username" type="text" placeholder="type username" required="vui lòng nhập username" />
+								<input class="input-large span10" name="username" id="username" type="email" placeholder="type username" required="vui lòng nhập username" />
 							</div>
 							<div class="clearfix"></div>
 
@@ -71,19 +71,14 @@
 								<input class="input-large span10" name="password" id="password" type="password" placeholder="type password" required="vui lòng nhập password" />
 							</div>
 							<div class="clearfix"></div>
-							
-							<label class="remember" for="remember"><input type="checkbox" id="remember" /> Nhớ tài khoản</label>
 
 							<div class="button-login">	
 								<button type="submit" class="btn btn-primary">Đăng nhập</button>
 							</div>
 							<div class="clearfix"></div>
 					</form>
-					
-					<hr>
-					<h3>Bạn quên password?</h3>
-					<p>
-						<a href="#">Click here</a> để được cung cấp password mới.
+										
+					<p class="text-center">	
 						<div class="text-alert"><b>
 							<?php
 					$message = Session::get('message');
@@ -102,14 +97,7 @@
 	</div><!--/.fluid-container-->
 	
 		</div><!--/fluid-row-->
-	    <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-content">
-				<ul class="list-inline item-details">
-					<li><a href="http://themifycloud.com">Admin templates</a></li>
-					<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-				</ul>
-			</div>
-		</div>
+	   
 	<!-- start: JavaScript-->
 
 		<script src="{{asset('public/backend/js/jquery-1.9.1.min.js')}}"></script>

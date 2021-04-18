@@ -14,6 +14,9 @@
                                      @foreach($show_news_hot as $key => $hott)
                                     <li><a href="{{URL::to('/detail-news/'.$hott->news_slug)}}">{{$hott->news_title}}</a></li>
                                     @endforeach
+                                    @for($i;$i<3;$i++)
+                                     <li><a href="{{$link[$i]}}">{{$tieude[$i]}}</a></li>
+                                     @endfor
                                 </ul>
                             </div>
                         </div>
@@ -22,11 +25,12 @@
                         <div class="top-meta-data d-flex align-items-center justify-content-end">
                             <!-- Top Social Info -->
                             <div class="top-social-info">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+
+                                <label class="switch">
+                                    <input type="checkbox" class="js-quantityCheckBox" @if($doitheme=="1") checked @endif>
+                                    <span class="slider round"></span>
+                                </label>
+
                             </div>
                             <!-- Top Search Area -->
                             <div class="top-search-area">
@@ -40,7 +44,7 @@
                             $user_id = Session::get('user_id');
                             $user_name = Session::get('user_name')?>
 
-                            @if(!isset($user_id)) 
+                            @if(!isset($user_id))
                             <a href="{{URL::to('/show-login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                             @endif
                         </div>
@@ -87,15 +91,7 @@
                                         </ul>
                                     </li>
                                     @endforeach
-                                    <!-- <li><a href="#">Công nghệ</a>
-                                    <ul class="dropdown">
-                                            <li><a href="{{URL::to('/show-topic')}}">Photograph</a></li>
-                                            <li><a href="{{URL::to('/show-topic')}}">Photoshop</a></li>
-                                            <li><a href="{{URL::to('/show-topic')}}">Lập trình web</a></li>
-                                            <li><a href="{{URL::to('/show-topic')}}">Video and edit</a></li>
-                                       
-                                    </li> -->
-                                    <li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
+
                                     @if(isset($user_id))
                                         <li><a href="#">{{$user_name}}</a>
                                              <ul class="dropdown">
@@ -113,3 +109,4 @@
             </div>
         </div>
     </header>
+

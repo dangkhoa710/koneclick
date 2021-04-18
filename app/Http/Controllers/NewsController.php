@@ -18,33 +18,12 @@ class NewsController extends Controller
 {
     public function show_add_news(){
     	$show_topic = DB::table('tbl_topic')->orderby('topic_id','desc')->get();
-    	$show_item_topic = DB::table('tbl_item_topic')->orderby('item_topic_id','desc')->get(); 
+    	$show_item_topic = DB::table('tbl_item_topic')->orderby('item_topic_id','desc')->get();
     	return view('admin.show_add_news')
     	->with('show_topic', $show_topic)
     	->with('show_item_topic', $show_item_topic);}
 
     public function process_save_news(Request $request){
-		//   	 $data = $request->all();
-		//  $new = new News();
-		//  $new->news_title = $data['news_title'];
-		//  $new->news_index = $data['news_index'];
-		//  $new->news_slug = $data['news_slug'];
-		//  $new->news_content = $data['news_content'];
-		//  $new->item_topic_id = $data['list_item_topic'];
-		//  $new->topic_id = $data['list_topic'];
-		//  $new->created_at=Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
-
-
-		//  if($get_image){
-		//  $get_name_image = $get_image->getClientOriginalName();
-		//  $name_image = current(explode('.',$get_name_image));
-		//  $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-		//  $get_image->move('public/backend/img_title',$new_image);
-
-		//  $new->news_img_upload = $new_image;
-
-		//  $new->save();
-		// }
 
 		$data = array();
 		$data['news_title'] = $request->news_title;
@@ -82,7 +61,7 @@ class NewsController extends Controller
 		Session::put('message','Thêm tin thành công');
 		return Redirect::to('list-news');
  		}
-		
+
 	public function show_list_news(){
 		$show_list_news = DB::table('tbl_news')
 		->join('tbl_topic','tbl_topic.topic_id','=','tbl_news.topic_id')
@@ -106,11 +85,11 @@ class NewsController extends Controller
 		->with('show_topic',$edit_topic)
 		->with('show_item_topic',$edit_item_topic);
 		return view('admin.khung')->with('admin.edit_news',$manager_edit_news);
-		}	
+		}
 
 	public function process_update_news(Request $request,$news_id){
-		// 	$data = $request->all();
-		// 	 $new = News::find($news_id);
+		// $data = $request->all();
+		// $new = News::find($news_id);
 		// $new->news_title = $data['news_title'];
 		// $new->news_index = $data['news_index'];
 		// $new->news_slug = $data['news_slug'];
@@ -129,7 +108,7 @@ class NewsController extends Controller
 		$data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 
 		$file_cu = $request->tencu;
-	
+
 
 		if ($request->file('news_upimg')){
 		File::delete('public/backend/img_title/'.$file_cu);
@@ -147,17 +126,12 @@ class NewsController extends Controller
 		return Redirect::to('list-news');
 		}
 
-	public function index_show_news($news_id){
-		DB::table('tbl_news')->where('news_id',$news_id)->update(['news_index'=>1]);
-		Session::put('message','Hiện tin thành công');
-		return Redirect::to('list-news');
-		}
+	public function index_show_news(Request $r){
+		DB::table('tbl_news')->where('news_id',$r->id)->update(['news_index'=>$r->tt]);
 
-	public function index_hidden_news($news_id){
-		DB::table('tbl_news')->where('news_id',$news_id)->update(['news_index'=>0]);
-		Session::put('message',' Ẩn tin thành công');
-		return Redirect::to('list-news');
-		}	
+        return response("success");
+
+		}
 
 	public function show_del_news($news_id){
 		$del_news = News::where('news_id',$news_id)->get();
@@ -167,14 +141,14 @@ class NewsController extends Controller
 
 		}
 		File::delete('public/backend/img_title/'.$ten);
-		
+
 
 		$del_reply_comment = DB::table('tbl_reply_comment')
 
 		->join('tbl_comment','tbl_comment.cmt_id','=','tbl_reply_comment.cmt_id')
 		->where('news_id',$news_id)->delete();
 
-		
+
 		DB::table('tbl_comment')->where('news_id',$news_id)->delete();
 
 		$lay_amount=DB::table('tbl_item_topic')->where('item_topic_id',$iti)->get();
@@ -206,12 +180,6 @@ class NewsController extends Controller
 		foreach($detail_news as $key => $value){
 		$item_topic_id = $value->item_topic_id;
 		$view=$value->news_view;
-		//seo
-		// $meta_desc = $value->product_desc;
-		// $meta_keywords = $value->product_slug;
-		// $meta_title = $value->product_name;
-		// $url_canonical = $request->url();
-		//--seo
 		}
 
 		$view2=((int)($view))+1;
@@ -255,8 +223,30 @@ class NewsController extends Controller
 		->orderBy('news_view','desc')
 		->limit(4)->get();
 
+		$doitheme2=DB::table('tbl_theme')->get();
+		foreach($doitheme2 as $key => $a){
+			$doitheme = $a->theme;
+		}
+        //-----
+        $dem=0;
+        include ('simple_html_dom.php');
+        $html = file_get_html("https://vietnamnet.vn/vn/tin-moi-nong/");
+        $link = array();
+        $tieude=array();
+        foreach ($html->find('h3[class=box-subcate-style4-title] a') as $key => $t) {
+            $tieude[]=$t->title;
+            $link[]="https://vietnamnet.vn/".$t->href;
+        }
+        $anh = array();
+        foreach  ($html->find('div[class=box-subcate-style4 m-b-10 clearfix] a img') as $key => $a){
+            $anh[]=$a->src;
+        }
+        $mota = array();
+        foreach ( $html->find('div[class=f-14 box-subcate-style4-lead lead]') as $key => $mt){
+            $mota[]=$mt->plaintext;
+        }
 
-		return view('page.show_detail_news')
+        return view('page.show_detail_news')
 		->with('topic',$show_topic)
 		->with('item',$show_item)
 		->with('news_detail',$detail_news)
@@ -268,11 +258,12 @@ class NewsController extends Controller
 		->with('show_reply_cmt',$show_reply_cmt)
 		->with('dem_reply_cmt',$dem_reply_cmt)
 		->with('show_view',$show_view)
-		// ->with('meta_desc',$meta_desc)
-		// ->with('meta_keywords',$meta_keywords)
-		// ->with('meta_title',$meta_title)
-		// ->with('url_canonical',$url_canonical);
-		;
+		->with('doitheme',$doitheme)
+        ->with('tieude',$tieude)
+            ->with('link',$link)
+        ->with('mota',$mota)
+        ->with('anh',$anh)
+        ->with('i',$dem);
 	}
 
 }

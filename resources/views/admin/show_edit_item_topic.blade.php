@@ -4,7 +4,7 @@
 				<li>
 					<i class="icon-home"></i>
 					<a href="{{URL::to('/dashboard')}}">Trang chính</a>
-					<i class="icon-angle-right"></i> 
+					<i class="icon-angle-right"></i>
 				</li>
 				<li>
 					<i class="icon-tasks"></i>
@@ -16,12 +16,12 @@
 					<a href="#">Chỉnh sửa item topic</a>
 				</li>
 			</ul>
-			
+
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white edit"></i><span class="break"></span> <b>Chỉnh sửa item topic</b></h2>
-						
+
 					</div>
 
 					<?php
@@ -71,7 +71,7 @@
 							<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">Mô tả vắn tắt</label>
 							  <div class="controls">
-								<textarea  id="item_topic_describe" name="item_topic_describe" >
+								<textarea name="item_topic_describe" id="editor" >
 									{{$edit_item_topicc->item_topic_describe}}
 								</textarea>
 							  </div>
@@ -79,10 +79,10 @@
 
 							<div class="form-actions">
 							  <button type="submit" class="btn btn-primary">Cập nhật item topic</button>
-							  <button type="reset" class="btn">Hủy</button>
+                                <a href="{{URL::to('/list-item-topic')}}" class="btn">Hủy</a>
 							</div>
 						  </fieldset>
-						</form>   
+						</form>
 						@endforeach
 					</div>
 				</div><!--/span-->

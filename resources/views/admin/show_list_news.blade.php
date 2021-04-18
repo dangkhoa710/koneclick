@@ -3,7 +3,7 @@
 <ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
+					<a href="index.html">Home</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
@@ -48,7 +48,7 @@
 								  <th>Trang chủ (Hot)</th>
 								  <th></th>
 							  </tr>
-						  </thead>   
+						  </thead>
 						  <tbody>
 						  	@foreach($show_list_news as $key => $list_news)
 							<tr>
@@ -64,21 +64,24 @@
 								</td>
 								<td class="center">{{ $list_news->topic_name }}</td>
 								<td class="center">{{ $list_news->item_topic_name }}</td>
-								@if($list_news->news_index==1)
-								<td class="center">
-									<a href="{{URL::to('/index-hidden-news/'.$list_news->news_id)}}" class="btn btn-success">Ẩn</a>
-								</td>
-								@else
-								<td class="center">
-									<a href="{{URL::to('/index-show-news/'.$list_news->news_id)}}" class="btn btn-primary">Hiện</a>
-								</td>
-								@endif
+{{--								@if($list_news->news_index==1)--}}
+{{--								<td class="center">--}}
+{{--									<a href="{{URL::to('/index-hidden-news/'.$list_news->news_id)}}" class="btn btn-success">Ẩn</a>--}}
+{{--								</td>--}}
+{{--								@else--}}
+{{--								<td class="center">--}}
+{{--									<a href="{{URL::to('/index-show-news/'.$list_news->news_id)}}" class="btn btn-primary">Hiện</a>--}}
+{{--								</td>--}}
+{{--								@endif--}}
+                                <td>
+                                    <input type="checkbox" class="js-quantityCheckBox2" data-id="{{$list_news-> news_id}}"  @if($list_news->news_index==1) checked @endif >
+                                </td>
 								<td class="center">
 									<a class="btn btn-info" href="{{URL::to('/edit-news/'.$list_news->news_id)}}">
-										<i class="halflings-icon white edit"></i>  
+										<i class="halflings-icon white edit"></i>
 									</a>
 									<a onclick="return confirm('Bạn có chắc là muốn xóa tin này ko ?')" class="btn btn-danger" href="{{URL::to('/del-news/'.$list_news->news_id)}}">
-										<i class="halflings-icon white trash"></i> 
+										<i class="halflings-icon white trash"></i>
 									</a>
 								</td>
 							</tr>

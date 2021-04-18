@@ -60,10 +60,22 @@
                                 </div>
                             </div>
                             @endforeach
+                            @for($i;$i<3;$i++)
+                            <div class="single-blog-post d-flex">
+                                <div class="post-thumbnail">
+                                    <a href="{{$link[$i]}}">
+                                        <img src="{{$anh[$i]}}" alt=""></a>
+                                </div>
+                                <div class="post-content">
+                                    <a href="{{$link[$i]}}" class="post-title">{{$tieude[$i]}}</a>
+{{--                                    <a href="{{$link[$i]}}" class="post-cata cata-sm {{$view->topic_color}}">{{$view2->topic_name}}</a>--}}
+                                </div>
+                            </div>
+                            @endfor
 
                         </div>
 
-                        
+
 
 
                         <!-- ***** Single Widget ***** -->
