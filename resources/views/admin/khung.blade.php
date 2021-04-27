@@ -193,12 +193,12 @@
                                 <li><a class="submenu" href="{{URL::to('/list-account')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Danh sách tài khoản</span></a></li>
                             </ul>
                         </li>
-						<!-- <li>
-							<a class="dropmenu" href="#"><i class="icon-arrow-down"></i><span class="hidden-tablet"> Crawl</span></a>
-							<ul>
-								<li><a class="submenu" href="{{URL::to('/crawl-news')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">Crawl dữ liệu tự động</span></a></li>
-							</ul>
-						</li> -->
+                        <li>
+                            <a class="dropmenu" href="#"><i class="icon-tasks"></i><span class="hidden-tablet">Crawl data</span></a>
+                            <ul>
+                                <li><a class="submenu" href="{{URL::to('/list-crawl')}}"><i class="icon-file-alt"></i><span class="hidden-tablet">Thiết lập</span></a></li>
+                            </ul>
+                        </li>
 						<li><a href="{{URL::to('/home')}}"><i class="icon-lock"></i><span class="hidden-tablet">Vào trang K-one</span></a></li>
 					</ul>
 				</div>
@@ -367,6 +367,62 @@
                 });
 
             });
+            $('.js-quantityCheckBox3').on('click', function (e) {
+                if ($(this).is(':checked')) {
+                    $('#amount_crawl').show();
+                    $('#mc_crawl').show();
+                }else{
+                    $('#amount_crawl').hide();
+                    $('#mc_crawl').hide();
+                };
+                let mode = $(this).prop("checked") == true ? 1 : 0;
+                $.ajax({
+                    url: '{{ route('crawl-yn') }}',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        tt: mode,
+                    },
+                    success: function (res) {
+                    },
+                    error: function (err) {
+                    }
+                });
+
+            });
+            $('.js-quantityCheckBox4').on('click', function (e) {
+                let mode = $(this).prop("checked") == true ? 1 : 0;
+                $.ajax({
+                    url: '{{ route('mc-crawl') }}',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        tt: mode,
+                    },
+                    success: function (res) {
+                    },
+                    error: function (err) {
+                    }
+                });
+            });
+            function doislmautin(){
+                let mode = $('.amount').val();
+                $.ajax({
+                    url: '{{ route('amount-crawl') }}',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        tt: mode,
+                    },
+                    success: function (res) {
+                    },
+                    error: function (err) {
+                    }
+                });
+            };
         </script>
 	<!-- end: JavaScript-->
 

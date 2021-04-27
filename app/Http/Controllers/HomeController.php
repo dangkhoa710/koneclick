@@ -81,7 +81,8 @@ class HomeController extends Controller
 	//-------------------------
 	->with('tieude',$tieude)
 	->with('mota',$mota)
-	->with('anh',$anh);
+	->with('anh',$anh)
+        ->with('tl',$doitheme);
 	//----------------------------
 
 	$theme = DB::table('tbl_theme')->first();

@@ -232,6 +232,7 @@ class NewsController extends Controller
         include ('simple_html_dom.php');
         $html = file_get_html("https://vietnamnet.vn/vn/tin-moi-nong/");
         $link = array();
+
         $tieude=array();
         foreach ($html->find('h3[class=box-subcate-style4-title] a') as $key => $t) {
             $tieude[]=$t->title;

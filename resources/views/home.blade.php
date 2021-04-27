@@ -47,8 +47,9 @@
                         </div>
                         @endforeach
 
+                        @if($tl->crawl_yn==1)
                         <?php $response = array(); ?>
-                        @for($i;$i<0;$i++)
+                        @for($i;$i<$tl->amount_crawl;$i++)
                         <div class="single-post-area mb-30">
                             <div class="row align-items-center">
                                 <div class="col-12 col-lg-6">
@@ -62,13 +63,15 @@
                                 <div class="col-12 col-lg-6">
                                     <!-- Post Content -->
                                     <div class="post-content mt-0">
+
+                                        @if($tl->mc_crawl==1)
                                         <div style="display: none">{{
                                             $response[$i] = Http::withHeaders([
                                             'Content-Type' => 'application/json',
                                             'Authorization' => 'Basic Og=='
                                             ])->post('http://127.0.0.1:5000/ml', ['data' => $mota[$i]])->json()
                                         }}</div>
-                                        @if($response[$i]=="Doi song")<div style="display: none">{{$response[$i]="Chinhtri Xahoi"}}</div>@endif
+{{--                                        @if($response[$i]=="Doi song")<div style="display: none">{{$response[$i]="Chinhtri Xahoi"}}</div>@endif--}}
 
                                         <a href="#" class="
                                         @foreach($laymau2 as $key => $lm2)
@@ -85,6 +88,8 @@
                                         @endif
                                         @endforeach
                                             ">{{$response[$i]}}</a>
+                                        @endif
+
                                         <a href="{{$link[$i]}}"class="post-title mb-2">{{$tieude[$i]}}</a>
                                         <div class="post-meta d-flex align-items-center mb-2">
                                             <a href="#" class="post-author">By KB-e</a>
@@ -98,6 +103,7 @@
                             </div>
                         </div>
                         @endfor
+                        @endif
 
                         <div class="row">
                             <div class="col-12 col-lg-12">
@@ -146,7 +152,8 @@
                                         <div class="post-meta d-flex justify-content-between">
                                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>  {{$niu->news_cmt}} lượt bình luận</a>
                                             <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{$niu->news_view}} lượt xem</a>
-                                            <a href="#">{{$niu->created_at}}</a>
+{{--                                            <br>--}}
+{{--                                            <a href="#">{{$niu->created_at}}</a>--}}
                                         </div>
                                     </div>
                                 </div>

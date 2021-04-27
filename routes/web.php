@@ -49,6 +49,11 @@ Route::get('/edit-topic/{topic_id}',[TopicController::class,'show_edit_topic']);
 Route::get('/del-topic/{topic_id}',[TopicController::class,'show_del_topic']);
 Route::get('/list-topic',[TopicController::class,'show_list_topic']);
 
+Route::get('/list-crawl',[TopicController::class,'show_list_crawl']);
+Route::post('/crawl-yn',[TopicController::class,'crawl_yn'])->name('crawl-yn');
+Route::post('/mc-crawl',[TopicController::class,'mc_crawl'])->name('mc-crawl');
+Route::post('/amount-crawl',[TopicController::class,'amount_crawl'])->name('amount-crawl');
+
 
 Route::post('/save-topic',[TopicController::class,'process_save_topic']);
 Route::post('/update-topic/{topic_id}',[TopicController::class,'process_update_topic']);

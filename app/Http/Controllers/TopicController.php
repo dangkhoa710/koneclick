@@ -61,4 +61,25 @@ class TopicController extends Controller
 		Session::put('message','Xóa topic thành công');
 		return Redirect::to('list-topic');
 		}
+
+    public function show_list_crawl(){
+	    $get = DB::table('tbl_theme')->first();
+        return view ('admin.show_list_crawl')
+            ->with('get',$get);
+    }
+    public function crawl_yn(Request $request){
+	    DB::table('tbl_theme')
+            ->update(['crawl_yn'=>$request->tt],['amount_crawl'=>0],['mc_crawl'=>$request->tt]);
+        return response("success");
+    }
+    public function mc_crawl(Request $request){
+	    DB::table('tbl_theme')
+            ->update(['mc_crawl'=>$request->tt]);
+        return response("success");
+    }
+    public function amount_crawl(Request $request){
+	    DB::table('tbl_theme')
+            ->update(['amount_crawl'=>$request->tt]);
+        return response("success");
+    }
 }
