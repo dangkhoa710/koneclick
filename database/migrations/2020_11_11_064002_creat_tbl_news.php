@@ -15,16 +15,17 @@ class CreatTblNews extends Migration
     {
         Schema::create('tbl_news', function (Blueprint $table) {
              $table->increments('news_id');
-             $table->string('news_title');
-             $table->string('news_content');
-             $table->string('news_view');
-             $table->string('news_like');
-             $table->string('news_cmt');
-             $table->string('news_img_upload');
-             $table->string('topic_id');
-             $table->string('item_topic_id');
-             $table->string('news_index');
-            $table->timestamps();
+             $table->string('news_title',100);
+             $table->string('news_slug',100);
+             $table->text('news_content');
+             $table->string('news_view',10);
+             $table->string('news_like',10)->nullable();
+             $table->string('news_cmt',10);
+             $table->string('news_img_upload',100);
+             $table->integer('topic_id');
+             $table->integer('item_topic_id');
+             $table->integer('news_index');
+            $table->timestamps()->nullable();
         });
     }
 

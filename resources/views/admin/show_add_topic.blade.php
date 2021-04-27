@@ -45,15 +45,33 @@
 							  </div>
 							</div>
 
-							<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">Mô tả vắn tắt</label>
-							  <div class="controls">
-								<textarea required  id="editor" name="topic_describe" ></textarea>
-							  </div>
-							</div>
+                              <div class="control-group">
+                                  <label class="control-label" for="selectError">Màu topic</label>
+                                  <div class="controls">
+                                      <select name="topic_color" data-rel="chosen">
+                                          <option value="primary">bg-primary</option>
+                                          <option value="secondary">bg-secondary</option>
+                                          <option value="success">bg-success</option>
+                                          <option value="danger">bg-danger</option>
+                                          <option value="warning">bg-warning</option>
+                                          <option value="info">bg-info</option>
+                                          <option value="light">bg-light</option>
+                                          <option value="dark">bg-dark</option>
+                                          <option value="white">bg-white</option>
+                                          <option value="transparent">bg-transparent</option>
+                                      </select>
+                                  </div>
+                              </div>
+
+                              <div class="control-group hidden-phone">
+                                  <label class="control-label" for="textarea2">Mô tả vắn tắt</label>
+                                  <div class="controls">
+                                      <textarea id="editor"  name="topic_describe"></textarea>
+                                  </div>
+                              </div>
 
 							<div class="form-actions">
-							  <button type="submit" class="btn btn-primary">Thêm topic</button>
+                                <button type="submit" class="btn btn-primary">Thêm topic</button>
                                 <a href="{{URL::to('/list-topic')}}" class="btn">Hủy</a>
 							</div>
 						  </fieldset>

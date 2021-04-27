@@ -94,14 +94,12 @@
 
 							</div>
 
-
-							<div class="control-group hidden-phone">
-							  <label class="control-label" for="textarea2">Nội dung</label>
-							  <div class="controls">
-								<textarea required id="editor"  name="news_content" ></textarea>
-							  </div>
-							</div>
-
+                          <div class="control-group hidden-phone">
+                              <label class="control-label" for="textarea2">Nội dung</label>
+                              <div class="controls">
+                                  <textarea id="editor"  name="news_content"></textarea>
+                              </div>
+                          </div>
 							<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2"></label>
 							  <div class="controls">

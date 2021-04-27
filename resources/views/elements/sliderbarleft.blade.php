@@ -47,8 +47,8 @@
                             @foreach($show_news_hot as $key => $view2)
                             <div class="single-blog-post d-flex">
                                 <div class="post-thumbnail">
-                                    <a href="{{URL::to('/detail-news/'.$view->news_slug)}}">
-                                    <img src="{{asset('public/backend/img_title/'.$view->news_img_upload)}}" alt=""></a>
+                                    <a href="{{URL::to('/detail-news/'.$view2->news_slug)}}">
+                                    <img src="{{asset('public/backend/img_title/'.$view2->news_img_upload)}}" alt=""></a>
                                 </div>
                                 <div class="post-content">
                                     <a href="{{URL::to('/detail-news/'.$view->news_slug)}}" class="post-title">{{$view2->news_title}}</a>

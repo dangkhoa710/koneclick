@@ -61,6 +61,13 @@
 							  </div>
 							</div>
 
+                              <div class="control-group">
+                                  <label class="control-label" for="typeahead">Màu tagname</label>
+                                  <div class="controls">
+                                      <input type="color" name="item_topic_color" value="">
+                                  </div>
+                              </div>
+
 							<div class="control-group hidden-phone">
 							  <label class="control-label" for="textarea2">Mô tả vắn tắt</label>
 							  <div class="controls">

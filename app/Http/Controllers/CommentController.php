@@ -25,14 +25,14 @@ class CommentController extends Controller
 
         DB::table('tbl_news')
         ->where('news_id',$news_id)
-        ->update(['news_cmt' => $dem_cmt ]);      
+        ->update(['news_cmt' => $dem_cmt ]);
 
 
     	$data = array();
     	$data['cmt_content']=$request->comment;
     	$data['id']=$user_id;
     	$data['news_id']=$news_id;
-    	$data['cmt_created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+    	$data['cmt_created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
     	DB::table('tbl_comment')
         ->insert($data);
 
@@ -55,13 +55,13 @@ class CommentController extends Controller
 
         DB::table('tbl_news')
         ->where('news_id',$news_id)
-        ->update(['news_cmt' => $dem_cmt ]);      
+        ->update(['news_cmt' => $dem_cmt ]);
 
     	$data = array();
     	$data['reply_cmt_content']=$request->replycmt;
     	$data['id']=$user_id;
     	$data['cmt_id']=$cmt_id;
-    	$data['reply_cmt_created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+    	$data['reply_cmt_created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
     	DB::table('tbl_reply_comment')->insert($data);
 
     	return Redirect::to('/detail-news/'.$request->slug);

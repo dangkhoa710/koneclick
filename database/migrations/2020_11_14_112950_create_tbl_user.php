@@ -15,12 +15,11 @@ class CreateTblUser extends Migration
     {
         Schema::create('tbl_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('name',50);
+            $table->string('email',50)->unique(); //dữ liệu không được trùng
+            $table->string('password',50);
+            $table->string('user_permision',20)->nullable();
+            $table->timestamps()->nullable();
         });
     }
 

@@ -16,9 +16,12 @@ class CreatTblComment extends Migration
         Schema::create('tbl_comment', function (Blueprint $table) {
             $table->id('cmt_id');
             $table->string('cmt_content');
-            $table->string('cmt_item_topic');
-            $table->string('cmt_user');
-            $table->timestamps();
+            $table->integer('cmt_item_topic')->nullable();
+            $table->integer('cmt_user')->nullable();
+            $table->integer('news_id');
+            $table->integer('id');
+            $table->timestamps('cmt_created_at')->nullable();
+            $table->timestamps('updated_at')->nullable();
         });
     }
 

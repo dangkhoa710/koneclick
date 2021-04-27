@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -19,15 +20,16 @@ class TopicController extends Controller
 		$topic = new Topic();
 		$topic->topic_name = $data['topic_name'];
 		$topic->topic_describe = $data['topic_describe'];
+		$topic->topic_color = 'post-cata cata-'. $data['topic_color'];
+		$topic->topic_created_at = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
 		$topic->save();
 
 		Session::put('message','	Thêm topic thành công');
 		return view('admin.show_add_topic');
-		}	
+		}
 
 
 	public function show_list_topic(){
-
 
 		$show_list_topic = Topic::orderBy('topic_id','DESC')->get();
 		$manager_list_topic = view('admin.show_list_topic')
@@ -46,6 +48,8 @@ class TopicController extends Controller
 		$topic = topic::find($topic_id);
 		$topic->topic_name = $data['topic_name'];
 		$topic->topic_describe = $data['topic_describe'];
+        $topic->topic_updated_at = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
+        $topic->topic_color = 'post-cata cata-'. $data['topic_color'];
 		$topic->save();
 		Session::put('message','	Cập nhật topic thành công');
 		return Redirect::to('list-topic');

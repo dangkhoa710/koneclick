@@ -35,6 +35,30 @@ class UserController extends Controller
 	->limit(4)->get();
 
 	$doitheme=DB::table('tbl_theme')->first();
+    $dem=0;
+    //__________________________________________________________________
+    include ('simple_html_dom.php');
+
+    $html = file_get_html("https://vietnamnet.vn/vn/tin-moi-nong/");
+
+    $link = array();
+
+    $tieude=array();
+
+    foreach ($html->find('h3[class=box-subcate-style4-title] a') as $key => $t) {
+        $tieude[]=$t->title;
+        $link[]="https://vietnamnet.vn/".$t->href;
+    }
+
+    $anh = array();
+    foreach  ($html->find('div[class=box-subcate-style4 m-b-10 clearfix] a img') as $key => $a){
+        $anh[]=$a->src;
+    }
+
+    $mota = array();
+    foreach ( $html->find('div[class=f-14 box-subcate-style4-lead lead]') as $key => $mt){
+        $mota[]=$mt->plaintext;
+    }
 
 	 return view('user.login')
 	->with('show_news_hot',$show_news_hot)
@@ -42,8 +66,11 @@ class UserController extends Controller
 	->with('show_item_topic_index',$show_item_topic_index)
 	->with('show_view',$show_view)
 	->with('doitheme',$doitheme->theme)
-	 ;
-
+    ->with('i',$dem)
+    ->with('link',$link)
+    ->with('tieude',$tieude)
+    ->with('mota',$mota)
+    ->with('anh',$anh);
 	}
 
 	public function show_dangky(){
@@ -68,12 +95,42 @@ class UserController extends Controller
 	->limit(4)->get();
 
 	$doitheme=DB::table('tbl_theme')->first();
+    $dem=0;
+    //__________________________________________________________________
+    include ('simple_html_dom.php');
+
+    $html = file_get_html("https://vietnamnet.vn/vn/tin-moi-nong/");
+
+    $link = array();
+
+    $tieude=array();
+
+    foreach ($html->find('h3[class=box-subcate-style4-title] a') as $key => $t) {
+        $tieude[]=$t->title;
+        $link[]="https://vietnamnet.vn/".$t->href;
+    }
+
+    $anh = array();
+    foreach  ($html->find('div[class=box-subcate-style4 m-b-10 clearfix] a img') as $key => $a){
+        $anh[]=$a->src;
+    }
+
+    $mota = array();
+    foreach ( $html->find('div[class=f-14 box-subcate-style4-lead lead]') as $key => $mt){
+        $mota[]=$mt->plaintext;
+    }
+
 	 return view('user.dangky')
 	->with('show_news_hot',$show_news_hot)
 	->with('show_topic_index',$show_topic_index)
 	->with('show_item_topic_index',$show_item_topic_index)
 	->with('show_view',$show_view)
 	->with('doitheme',$doitheme->theme)
+    ->with('i',$dem)
+    ->with('link',$link)
+    ->with('tieude',$tieude)
+    ->with('mota',$mota)
+    ->with('anh',$anh);
 	 ;
 	}
 

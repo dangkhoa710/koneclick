@@ -13,10 +13,13 @@ class HomeController extends Controller
     public function index(Request $request){
 
 	$show_topic_index = DB::table('tbl_topic')->orderBy('topic_id','asc')->get();
-	$show_item_topic_index = DB::table('tbl_item_topic')->orderBy('topic_id','desc')->get();
+	$show_item_topic_index = DB::table('tbl_item_topic')
+                            ->join('tbl_topic','tbl_topic.topic_id','=','tbl_item_topic.topic_id')
+                            ->orderBy('item_topic_id','desc')->get();
 
 	$show_news_hot=DB::table('tbl_news')->where('news_index','1')
 	->join('tbl_topic','tbl_topic.topic_id','=','tbl_news.topic_id')
+	->join('tbl_item_topic','tbl_item_topic.item_topic_id','=','tbl_news.item_topic_id')
 	->orderBy('news_id','desc')->limit(6)->get();
 
 	$show_view=DB::table('tbl_news')
@@ -29,12 +32,17 @@ class HomeController extends Controller
 
 	$show_news_item = DB::table('tbl_news')
 	->join('tbl_topic','tbl_topic.topic_id','=','tbl_news.topic_id')
+    ->join('tbl_item_topic','tbl_item_topic.item_topic_id','=','tbl_news.item_topic_id')
 	->orderBy('news_id','desc')->get();
 
-	$dem=0;
+	$laymau2=[];
+	foreach($show_item_topic_index as $key => $laymau) {
+
+        $laymau2[$laymau->item_topic_slug]= [$laymau->item_topic_color,$laymau->topic_name,$laymau->topic_color];
+    }
 
 	$doitheme=DB::table('tbl_theme')->first();
-
+    $dem=0;
 	//__________________________________________________________________
 	include ('simple_html_dom.php');
 
@@ -58,12 +66,6 @@ class HomeController extends Controller
 	foreach ( $html->find('div[class=f-14 box-subcate-style4-lead lead]') as $key => $mt){
 		$mota[]=$mt->plaintext;
 	}
-	
-	//call api method post su dung cho mota de truyen du lieu vao api
-	//api ta ve luu vao bien tag name
-	//-----------------
-	//
-	//-----------------------------------------------------------------------------------
 
 	return view('home')
 	->with('show_topic_index',$show_topic_index)
@@ -75,7 +77,7 @@ class HomeController extends Controller
 	->with('i',$dem)
 	->with('doitheme',$doitheme->theme)
 	->with('link',$link)
-
+	->with('laymau2',$laymau2)
 	//-------------------------
 	->with('tieude',$tieude)
 	->with('mota',$mota)

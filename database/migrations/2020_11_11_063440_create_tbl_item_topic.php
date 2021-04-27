@@ -15,11 +15,15 @@ class CreateTblItemTopic extends Migration
     {
         Schema::create('tbl_item_topic', function (Blueprint $table) {
             $table->increments('item_topic_id');
-             $table->string('item_topic_name');
-             $table->string('item_topic_describe');
-             $table->string('item_topic_amount');
-             $table->string('topic_id');
-             $table->timestamps();
+             $table->string('item_topic_name',255);
+             $table->string('item_topic_describe',150);
+             $table->string('item_topic_slug',100);
+             $table->string('item_topic_amount',10);
+             $table->integer('topic_id');
+             $table->string('item_topic_index',10);
+             $table->string('item_topic_color',10)->nullable();
+             $table->timestamps('item_topic_created_at')->nullable();
+             $table->timestamps('item_topic_updated_at')->nullable();
         });
     }
 

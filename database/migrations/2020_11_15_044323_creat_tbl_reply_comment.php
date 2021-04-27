@@ -16,9 +16,11 @@ class CreatTblReplyComment extends Migration
         Schema::create('tbl_reply_comment', function (Blueprint $table) {
             $table->id('reply_cmt_id');
             $table->string('reply_cmt_content');
-            $table->string('user_id');
-            $table->string('cmt_id');
-            $table->timestamps();
+            $table->integer('user_id');
+            $table->integer('cmt_id');
+            $table->integer('id');
+            $table->timestamps('reply_cmt_created_at')->nullable();
+            $table->timestamps('updated_at')->nullable();
         });
     }
 

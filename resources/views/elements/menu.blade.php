@@ -14,9 +14,11 @@
                                      @foreach($show_news_hot as $key => $hott)
                                     <li><a href="{{URL::to('/detail-news/'.$hott->news_slug)}}">{{$hott->news_title}}</a></li>
                                     @endforeach
+
                                     @for($i;$i<3;$i++)
                                      <li><a href="{{$link[$i]}}">{{$tieude[$i]}}</a></li>
                                      @endfor
+
                                 </ul>
                             </div>
                         </div>

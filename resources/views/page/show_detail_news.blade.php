@@ -11,7 +11,8 @@
 
                             <!-- Post Content -->
                             <div class="post-content mt-0 ">
-                                <a href="#" class="post-cata cata-sm {{$value->topic_color}}">{{$value->topic_name}}</a>
+                                <a href="#" class="{{$value->topic_color}}">{{$value->topic_name}}</a>
+                                <a href="#" class=" post-cata" style="background-color: {{$value->item_topic_color}}">{{$value->item_topic_name}}</a>
                                 <a href="single-post.html" class="post-title mb-2">{{$value->news_title}}</a>
 
                             </div>
@@ -23,7 +24,7 @@
                             <!-- Post Tags -->
 
                             <!-- Post Author -->
-                            
+
                             <!-- Related Post Area -->
                             <div class="related-post-area mt-5">
                                 <!-- Section Title -->
@@ -45,7 +46,8 @@
 
                                             <!-- Post Content -->
                                             <div class="post-content">
-                                                <a href="{{URL::to('/detail-news/'.$lq->news_slug)}}" class="post-cata cata-sm cata-success">{{$lq->topic_name}}</a>
+                                                <a href="{{URL::to('/detail-news/'.$lq->news_slug)}}" class="{{$lq->topic_color}}">{{$lq->topic_name}}</a>
+                                                <a href="{{URL::to('/detail-news/'.$lq->news_slug)}}" class=" post-cata" style="background-color: {{$lq->item_topic_color}}">{{$lq->item_topic_name}}</a>
                                                 <a href="{{URL::to('/detail-news/'.$lq->news_slug)}}" class="post-title">{{$lq->news_title}}</a>
                                             </div>
                                         </div>
@@ -74,31 +76,31 @@
                                                 <img src="{{asset('public/frontend/31.jpg')}}" alt="author">
                                             </div>
                                             <!-- Comment Meta -->
-                                            
-                                            <div class="comment-meta"> 
+
+                                            <div class="comment-meta">
                                                 <h6>{{$cmt->name}}</h6>
                                                 <a href="#" class="comment-date">{{$cmt->cmt_created_at}}</a>
                                                 <p>{{$cmt->cmt_content}}</p>
                                                 <div class="d-flex align-items-center">
-                                                    <button aria-expanded="false"  class="btn btn-danger" 
+                                                    <button aria-expanded="false"  class="btn btn-danger"
                                                     data-toggle="collapse" data-target="#box{{$cmt->cmt_id}}">Xem phản hồi</button>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </li>
                                     <div class="collapse mb-3" id="box{{$cmt->cmt_id}}">
                                     @foreach($show_reply_cmt as $key => $repcmt)
                                     @if($repcmt->cmt_id==$cmt->cmt_id)
                                     <ol class="children ">
-                                        
+
                                             <li class="single_comment_area">
                                                 <!-- Comment Content -->
                                                 <div class="comment-content d-flex">
                                                     <!-- Comment Author -->
                                                     <div class="comment-author">
                                                         <img src="{{asset('public/frontend/32.jpg')}}" alt="author">
-                                                        
+
                                                     </div>
                                                     <!-- Comment Meta -->
                                                     <div class="comment-meta">
@@ -106,9 +108,9 @@
                                                         <a href="#" class="comment-date">{{$repcmt->reply_cmt_created_at}}</a>
                                                         <p>{{$repcmt->reply_cmt_content}}</p>
                                                     </div>
-                                            </li> 
-                                        </ol> 
-                                        
+                                            </li>
+                                        </ol>
+
                                     @endif
                                     @endforeach
                                     @if(isset($user_id))

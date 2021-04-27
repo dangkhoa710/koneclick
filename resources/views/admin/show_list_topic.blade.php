@@ -3,7 +3,7 @@
 <ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
+					<a href="index.html">Home</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
@@ -37,29 +37,35 @@
 								  <th>Mã ID</th>
 								  <th>Tên topic</th>
 								  <th>Mô tả</th>
+                                  <th>Màu tagname</th>
 								  <th>Số lượng item</th>
+								  <th>Tạo lúc</th>
+								  <th>Sửa lần cuối lúc</th>
 								  <th></th>
 							  </tr>
-						  </thead>   
+						  </thead>
 						  <tbody>
 						  	@foreach($show_list_topic as $key => $list_topic)
 							<tr>
 								<td>{{ $list_topic->topic_id }}</td>
 								<td class="center">{{ $list_topic->topic_name }}</td>
 								<td class="center">{!!$list_topic->topic_describe!!}</td>
+								<td class="center"> {{$list_topic->topic_color}}</td>
 								<td class="center">{{ $list_topic->topic_amount }}</td>
+								<td class="center">{{ $list_topic->topic_created_at }}</td>
+								<td class="center">{{ $list_topic->topic_updated_at }}</td>
 								<td class="center">
 									<a class="btn btn-info" href="{{URL::to('/edit-topic/'.$list_topic->topic_id)}}">
-										<i class="halflings-icon white edit"></i>  
+										<i class="halflings-icon white edit"></i>
 									</a>
 									<a onclick="return confirm('Bạn có chắc là muốn xóa topic này ko ?')" class="btn btn-danger" href="{{URL::to('/del-topic/'.$list_topic->topic_id)}}">
-										<i class="halflings-icon white trash"></i> 
+										<i class="halflings-icon white trash"></i>
 									</a>
 								</td>
 							</tr>
 							@endforeach
 						  </tbody>
-					  </table>            
+					  </table>
 					</div>
 				</div><!--/span-->
 			</div>

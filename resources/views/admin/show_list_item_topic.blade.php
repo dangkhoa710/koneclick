@@ -41,8 +41,11 @@
 								  <th>Mô tả</th>
 								  <th>Thuộc topic</th>
 								  <th>Slug</th>
+                                  <th>Màu tag-name </th>
 								  <th>Số lượng bài viết</th>
 								  <th>Trang chủ</th>
+                                  <th>Tạo lúc</th>
+                                  <th>Sửa lần cuối lúc</th>
 								  <th></th>
 							  </tr>
 						  </thead>
@@ -54,6 +57,7 @@
 								<td class="center">{!!$list_item_topic->item_topic_describe!!}</td>
 								<td class="center">{{ $list_item_topic->topic_name }}</td>
 								<td class="center">{{ $list_item_topic->item_topic_slug }}</td>
+                                <td class="center" style="background-color:{{$list_item_topic->item_topic_color ?? '' }}"></td>
 								<td class="center">{{ $list_item_topic->item_topic_amount }}</td>
 
 {{--								@if($list_item_topic->item_topic_index==1)--}}
@@ -69,7 +73,8 @@
                                 <td>
                                     <input type="checkbox" class="js-quantityCheckBox" data-id="{{$list_item_topic->item_topic_id}}"  @if($list_item_topic->item_topic_index=="1") checked @endif >
                                 </td>
-
+                                <td class="center">{{$list_item_topic->item_topic_created_at}}</td>
+                                <td class="center">{{$list_item_topic->item_topic_updated_at}}</td>
 								<td class="center">
 									<a class="btn btn-info" href="{{URL::to('/edit-item-topic/'.$list_item_topic->item_topic_id)}}">
 										<i class="halflings-icon white edit"></i>

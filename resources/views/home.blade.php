@@ -25,8 +25,9 @@
                                 <div class="col-12 col-lg-6">
                                     <!-- Post Content -->
                                     <div class="post-content mt-0">
-                                        <a href="#" class="post-cata cata-sm {{$hot->topic_color}}">
+                                        <a href="#" class="{{$hot->topic_color}}">
                                             {{$hot->topic_name}}</a>
+                                        <a href="{{URL::to('/show-list-item-topic-index/'.$hot->item_topic_slug)}}" class="post-cata" style="background-color:{{$hot->item_topic_color ?? ''}}">{{$hot->item_topic_name ?? ''}}</a>
                                         <a href="{{URL::to('/detail-news/'.$hot->news_slug)}}"class="post-title mb-2">{{$hot->news_title}}</a>
                                         <div class="post-meta d-flex align-items-center mb-2">
                                             <a href="#" class="post-author">By KB-e</a>
@@ -47,7 +48,7 @@
                         @endforeach
 
                         <?php $response = array(); ?>
-                        @for($i;$i<1;$i++)
+                        @for($i;$i<0;$i++)
                         <div class="single-post-area mb-30">
                             <div class="row align-items-center">
                                 <div class="col-12 col-lg-6">
@@ -68,8 +69,22 @@
                                             ])->post('http://127.0.0.1:5000/ml', ['data' => $mota[$i]])->json()
                                         }}</div>
                                         @if($response[$i]=="Doi song")<div style="display: none">{{$response[$i]="Chinhtri Xahoi"}}</div>@endif
-                                        @if($response[$i]=="Doi song")<div style="display: none">{{$response[$i]="Chinhtri Xahoi"}}</div>@endif
-                                        <a href="{{URL::TO('/show-list-item-topic-index/'.strtolower(str_replace(" ","-",$response[$i])))}}" class="post-cata cata-primary">{{$response[$i]}}</a>
+
+                                        <a href="#" class="
+                                        @foreach($laymau2 as $key => $lm2)
+                                        @if((strtolower(str_replace(" ","-",$response[$i])))==$key)
+                                        {{$lm2[2]}}
+                                        @endif
+                                        @endforeach
+                                        ">{{$lm2[1]}}</a>
+
+                                        <a href="{{URL::TO('/show-list-item-topic-index/'.strtolower(str_replace(" ","-",$response[$i])))}}" class="post-cata" style="background-color:
+                                        @foreach($laymau2 as $key => $lm2)
+                                        @if((strtolower(str_replace(" ","-",$response[$i])))==$key)
+                                            {{$lm2[0]}}
+                                        @endif
+                                        @endforeach
+                                            ">{{$response[$i]}}</a>
                                         <a href="{{$link[$i]}}"class="post-title mb-2">{{$tieude[$i]}}</a>
                                         <div class="post-meta d-flex align-items-center mb-2">
                                             <a href="#" class="post-author">By KB-e</a>
@@ -102,8 +117,8 @@
 
                                 <!-- Post Content -->
                                     <div class="post-content">
-                                        <a href="#" class="post-cata {{$niu->topic_color}}">{{$niu->topic_name}}</a>
-
+                                        <a href="#" class="{{$niu->topic_color}}">{{$niu->topic_name}}</a>
+                                        <a href="#" class="post-cata" style="background-color: {{$niu->item_topic_color}}">{{$niu->item_topic_name}}</a>
                                         <a href="{{URL::to('/detail-news/'.$niu->news_slug)}}" class="post-title">{{$niu->news_title}}</a>
                                         <div class="post-meta d-flex">
                                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>  {{$niu->news_cmt}} lượt bình luận</a>

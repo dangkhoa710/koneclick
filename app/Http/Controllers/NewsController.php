@@ -105,7 +105,7 @@ class NewsController extends Controller
 		$data['news_content'] = $request->news_content;
 		$data['item_topic_id'] = $request->list_item_topic;
 		$data['topic_id'] = $request->list_topic;
-		$data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+		$data['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 
 		$file_cu = $request->tencu;
 

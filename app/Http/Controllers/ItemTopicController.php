@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
 use Session;
@@ -29,6 +30,8 @@ class ItemTopicController extends Controller
 		$itemtopic->topic_id = $data['list_topic'];
 		$itemtopic->item_topic_amount=0;
         $itemtopic->item_topic_index=0;
+        $itemtopic->item_topic_color = $data['item_topic_color'];
+        $itemtopic->item_topic_created_at = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
 		$itemtopic->save();
 
 		Session::put('message','	Thêm item topic thành công');
@@ -62,7 +65,9 @@ class ItemTopicController extends Controller
 		$itemtopic->item_topic_describe = $data['item_topic_describe'];
 		$itemtopic->item_topic_slug = $data['item_topic_slug'];
 		$itemtopic->topic_id = $data['list_topic'];
-		$itemtopic->save();
+		$itemtopic->item_topic_color = $data['item_topic_color'];
+        $itemtopic->item_topic_updated_at = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
+        $itemtopic->save();
 
 		Session::put('message','	Cập nhật item thành công');
 		return Redirect::to('list-item-topic');
