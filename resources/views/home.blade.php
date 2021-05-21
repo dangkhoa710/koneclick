@@ -18,7 +18,7 @@
 
                                     <div class="post-thumbnail">
                                         <a href="{{URL::to('/detail-news/'.$hot->news_slug)}}" class="post-date">
-                                        <img src="{{asset('public/backend/img_title/'.$hot->news_img_upload)}}" alt="">
+                                        <img src="{{asset('backend/img_title/'.$hot->news_img_upload)}}" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                         </div>
                         @endforeach
 
-                        @if($tl->crawl_yn==1)
+
                         <?php $response = array(); ?>
                         @for($i;$i<$tl->amount_crawl;$i++)
                         <div class="single-post-area mb-30">
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         @endfor
-                        @endif
+
 
                         <div class="row">
                             <div class="col-12 col-lg-12">
@@ -119,7 +119,7 @@
                                 <div class="sport-video-slides owl-carousel mb-50">
                                     @foreach ($show_news_item as $niu)
                                     @if($niu->item_topic_id==$itemtopic->item_topic_id)
-                                    <div class="single-feature-post video-post bg-img" style="background-image: url(public/backend/img_title/{{$niu->news_img_upload}});">
+                                    <div class="single-feature-post video-post bg-img" style="background-image: url(backend/img_title/{{$niu->news_img_upload}});">
 
                                 <!-- Post Content -->
                                     <div class="post-content">
@@ -145,7 +145,7 @@
                                 <div class="single-blog-post style-3 d-flex mb-50">
                                     <div class="post-thumbnail">
                                         <a href="{{URL::to('/detail-news/'.$niu->news_slug)}}">
-                                        <img src="{{asset('public/backend/img_title/'.$niu->news_img_upload)}}" alt=""></a>
+                                        <img src="{{asset('backend/img_title/'.$niu->news_img_upload)}}" alt=""></a>
                                     </div>
                                     <div class="post-content">
                                         <a href="{{URL::to('/detail-news/'.$niu->news_slug)}}" class="post-title">{{$niu->news_title}}</a>

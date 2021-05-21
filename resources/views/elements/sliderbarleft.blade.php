@@ -21,7 +21,7 @@
                             <div class="single-blog-post d-flex">
                                 <div class="post-thumbnail">
                                     <a href="{{URL::to('/detail-news/'.$view->news_slug)}}">
-                                    <img src="{{asset('public/backend/img_title/'.$view->news_img_upload)}}" alt=""></a>
+                                    <img src="{{asset('backend/img_title/'.$view->news_img_upload)}}" alt=""></a>
                                 </div>
                                 <div class="post-content">
                                     <a href="{{URL::to('/detail-news/'.$view->news_slug)}}" class="post-title">{{$view->news_title}}</a>
@@ -48,7 +48,7 @@
                             <div class="single-blog-post d-flex">
                                 <div class="post-thumbnail">
                                     <a href="{{URL::to('/detail-news/'.$view2->news_slug)}}">
-                                    <img src="{{asset('public/backend/img_title/'.$view2->news_img_upload)}}" alt=""></a>
+                                    <img src="{{asset('backend/img_title/'.$view2->news_img_upload)}}" alt=""></a>
                                 </div>
                                 <div class="post-content">
                                     <a href="{{URL::to('/detail-news/'.$view->news_slug)}}" class="post-title">{{$view2->news_title}}</a>
@@ -60,18 +60,21 @@
                                 </div>
                             </div>
                             @endforeach
-                            @for($i;$i<3;$i++)
-                            <div class="single-blog-post d-flex">
-                                <div class="post-thumbnail">
-                                    <a href="{{$link[$i]}}">
-                                        <img src="{{$anh[$i]}}" alt=""></a>
+
+
+                                @for($i;$i<3;$i++)
+                                <div class="single-blog-post d-flex">
+                                    <div class="post-thumbnail">
+                                        <a href="{{$link[$i]}}">
+                                            <img src="{{$anh[$i]}}" alt=""></a>
+                                    </div>
+                                    <div class="post-content">
+                                        <a href="{{$link[$i]}}" class="post-title">{{$tieude[$i]}}</a>
+    {{--                                    <a href="{{$link[$i]}}" class="post-cata cata-sm {{$view->topic_color}}">{{$view2->topic_name}}</a>--}}
+                                    </div>
                                 </div>
-                                <div class="post-content">
-                                    <a href="{{$link[$i]}}" class="post-title">{{$tieude[$i]}}</a>
-{{--                                    <a href="{{$link[$i]}}" class="post-cata cata-sm {{$view->topic_color}}">{{$view2->topic_name}}</a>--}}
-                                </div>
-                            </div>
-                            @endfor
+                                @endfor
+
 
                         </div>
 
@@ -80,7 +83,7 @@
 
                         <!-- ***** Single Widget ***** -->
                         <div class="single-widget mb-50">
-                            <img src="{{asset('public/frontend/11711026631628022005.png')}}">
+                            <img src="{{asset('frontend/11711026631628022005.png')}}">
                         </div>
 
                     </div>

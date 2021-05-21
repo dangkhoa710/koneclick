@@ -5,7 +5,7 @@
                 <div class="col-12 col-sm-6 col-xl-3">
                     <div class="footer-widget mb-70">
                         <!-- Logo -->
-                        <a href="index.html" class="foo-logo d-block mb-4"><img src="{{asset('public/frontend/logo2.png')}}" alt=""></a>
+                        <a href="index.html" class="foo-logo d-block mb-4"><img src="{{asset('frontend/logo2.png')}}" alt=""></a>
                         <p>K-one click là trang web blog thủ thuật công nghệ, tin tức công nghê topic về ứng dụng phần mềm trong cuộc sống, đưa tin tức xã hội, giải trí, giáo dục,...Lịch thi đấu thể thao và tin tức thể thao,....</p>
                         <!-- Footer Newsletter Area -->
                     </div>

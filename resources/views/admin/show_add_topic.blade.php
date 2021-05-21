@@ -1,5 +1,6 @@
 @extends('admin.khung')
 @section('content')
+<div style="height: 100vh!important;">
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
@@ -81,4 +82,5 @@
 				</div><!--/span-->
 
 			</div><!--/row-->
+</div>
 @endsection

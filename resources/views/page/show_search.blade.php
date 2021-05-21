@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 					<br>
-                    
+
                     <div class="archive-catagory-view mb-50 d-flex align-items-center justify-content-between">
                         <!-- Catagory -->
                         <div class="archive-catagory">
@@ -9,7 +9,7 @@
                         </div>
 
                     </div>
-          
+
                     <!-- Single Post Area -->
                     @foreach($show_news_of_item_topic as $key => $news_of_item)
                     <div class="single-post-area style-2">
@@ -18,7 +18,7 @@
                                 <!-- Post Thumbnail -->
                                 <div class="post-thumbnail">
                                     <a href="{{URL::to('/detail-news/'.$news_of_item->news_slug)}}">
-                                    <img src="{{asset('public/backend/img_title/'.$news_of_item->news_img_upload)}}" alt="">
+                                    <img src="{{asset('backend/img_title/'.$news_of_item->news_img_upload)}}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                     <nav class="mt-50">
                         <ul class="pagination justify-content-center">
                 <!--                             <li class="page-item"><a class="page-link" href="?page={{$trang=1}}"><i class="fa fa-angle-left"></i></a></li> -->
-                <!--                            <li class="page-item"><a class="page-link" href="?page={{$trang=1}}"><i class="fa fa-angle-right"></i></a></li> -->                  
+                <!--                            <li class="page-item"><a class="page-link" href="?page={{$trang=1}}"><i class="fa fa-angle-right"></i></a></li> -->
                 <!--                             <li class="page-item"><a class="page-link" href="?page={{$trang=1}}"></i>{{$trang=1}}</a></li> -->
 
 

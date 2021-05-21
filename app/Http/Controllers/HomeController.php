@@ -41,7 +41,8 @@ class HomeController extends Controller
         $laymau2[$laymau->item_topic_slug]= [$laymau->item_topic_color,$laymau->topic_name,$laymau->topic_color];
     }
 
-	$doitheme=DB::table('tbl_theme')->first();
+
+
     $dem=0;
 	//__________________________________________________________________
 	include ('simple_html_dom.php');
@@ -66,7 +67,7 @@ class HomeController extends Controller
 	foreach ( $html->find('div[class=f-14 box-subcate-style4-lead lead]') as $key => $mt){
 		$mota[]=$mt->plaintext;
 	}
-
+	$doitheme=DB::table('tbl_theme')->first();
 	return view('home')
 	->with('show_topic_index',$show_topic_index)
 	->with('show_item_topic_index',$show_item_topic_index)
@@ -82,23 +83,30 @@ class HomeController extends Controller
 	->with('tieude',$tieude)
 	->with('mota',$mota)
 	->with('anh',$anh)
-        ->with('tl',$doitheme);
+    ->with('tl',$doitheme);
 	//----------------------------
 
-	$theme = DB::table('tbl_theme')->first();
-	return view('elements.menu')
-	->with('show_topic_index',$show_topic_index)
-	->with('show_item_topic_index',$show_item_topic_index)
-	->with('show_news_hot',$show_news_hot)
-	->with('theme',$theme);
-
-	return view('elements.sliderbarleft')
-	->with('show_view',$show_view);
+//	$theme = DB::table('tbl_theme')->first();
+//
+//	return view('elements.menu')
+//	->with('show_topic_index',$show_topic_index)
+//	->with('show_item_topic_index',$show_item_topic_index)
+//	->with('show_news_hot',$show_news_hot)
+//    ->with('link',$link)
+//    ->with('tieude',$tieude)
+//    ->with('i',$dem)
+//	->with('theme',$theme);
+//
+//	return view('elements.sliderbarleft')
+//    ->with('link',$link)
+//    ->with('tieude',$tieude)
+//    ->with('anh',$anh)
+//    ->with('i',$dem)
+//	->with('show_view',$show_view);
 
     }
     public function doitheme(Request $r)
     {
-
     	DB::table('tbl_theme')->update(['theme'=>$r->theme]);
         return response("success");
     }

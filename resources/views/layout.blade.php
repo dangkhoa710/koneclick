@@ -12,13 +12,13 @@
     <title>K-ONE Click - Đi cảnh thời gian rảnh </title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('public/frontend/favicon.ico')}}">
+    <link rel="icon" href="{{asset('frontend/favicon.ico')}}">
 
     <!-- Stylesheet -->
     @if($doitheme=="1")
-        <link rel="stylesheet" href="{{asset('public/frontend/style.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
     @elseif($doitheme=="2")
-        <link rel="stylesheet" href="{{asset('public/frontend/style2.css')}}">
+        <link rel="stylesheet" href="{{asset('frontend/style2.css')}}">
     @endif
     <style type="text/css">
         .seo_content {
@@ -129,14 +129,6 @@
 
 <body>
 <!-- Preloader -->
-<div class="preloader d-flex align-items-center justify-content-center">
-    <div class="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
 
 @include("elements.menu")
 
@@ -153,15 +145,15 @@
 
 @include("elements.footer")
 
-<script src="{{asset('public/frontend/js/jquery/jquery-2.2.4.min.js')}}"></script>
+<script src="{{asset('frontend/js/jquery/jquery-2.2.4.min.js')}}"></script>
 <!-- Popper js -->
-<script src="{{asset('public/frontend/js/bootstrap/popper.min.js')}}"></script>
+<script src="{{asset('frontend/js/bootstrap/popper.min.js')}}"></script>
 <!-- Bootstrap js -->
-<script src="{{asset('public/frontend/js/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{asset('frontend/js/bootstrap/bootstrap.min.js')}}"></script>
 <!-- All Plugins js -->
-<script src="{{asset('public/frontend/js/plugins/plugins.js')}}"></script>
+<script src="{{asset('frontend/js/plugins/plugins.js')}}"></script>
 <!-- Active js -->
-<script src="{{asset('public/frontend/js/active.js')}}"></script>
+<script src="{{asset('frontend/js/active.js')}}"></script>
 <script type="text/javascript">
     $('.js-quantityCheckBox').on('click', function (e) {
         let mode = $(this).prop("checked") == true ? 1 : 2;

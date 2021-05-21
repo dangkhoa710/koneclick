@@ -68,8 +68,13 @@ class TopicController extends Controller
             ->with('get',$get);
     }
     public function crawl_yn(Request $request){
-	    DB::table('tbl_theme')
-            ->update(['crawl_yn'=>$request->tt],['amount_crawl'=>0],['mc_crawl'=>$request->tt]);
+	    if($request->tt==0) {
+            DB::table('tbl_theme')
+                ->update(['crawl_yn' => $request->tt, 'amount_crawl' => $request->tt, 'mc_crawl' => $request->tt]);
+        }else{
+            DB::table('tbl_theme')
+                ->update(['crawl_yn' => $request->tt]);
+        }
         return response("success");
     }
     public function mc_crawl(Request $request){

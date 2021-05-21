@@ -8,7 +8,7 @@
         </li>
         <li>
             <i class="icon-tasks"></i>
-            <a href="#">Topic</a>
+            <a href="#">Quản lí tài khoản</a>
             <i class="icon-angle-right"></i>
         </li>
         <li><a href="#">Danh sách tài khoản</a></li>

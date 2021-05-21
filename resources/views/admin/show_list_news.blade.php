@@ -8,10 +8,10 @@
 				</li>
 				<li>
 					<i class="icon-tasks"></i>
-					<a href="#">News</a>
+					<a href="#">Tin tức</a>
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">Danh sách news</a></li>
+				<li><a href="#">Danh sách tin tức</a></li>
 			</ul>
 			<div class="row-fluid sortable">
 				<div class="box span12">

@@ -15,9 +15,11 @@
                                     <li><a href="{{URL::to('/detail-news/'.$hott->news_slug)}}">{{$hott->news_title}}</a></li>
                                     @endforeach
 
+
                                     @for($i;$i<3;$i++)
                                      <li><a href="{{$link[$i]}}">{{$tieude[$i]}}</a></li>
                                      @endfor
+
 
                                 </ul>
                             </div>
@@ -64,7 +66,7 @@
                     <nav class="classy-navbar justify-content-between" id="vizewNav">
 
                         <!-- Nav brand -->
-                        <a href="{{URL::to('/home')}}" class="nav-brand"><img src="{{asset('public/frontend/logo.png')}}" alt=""></a>
+                        <a href="{{URL::to('/home')}}" class="nav-brand"><img src="{{asset('frontend/logo.png')}}" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">

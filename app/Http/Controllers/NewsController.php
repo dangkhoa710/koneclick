@@ -32,7 +32,7 @@ class NewsController extends Controller
 		$data['news_content'] = $request->news_content;
 		$data['item_topic_id'] = $request->list_item_topic;
 		$data['topic_id'] = $request->list_topic;
-		$data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+		$data['created_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
 		$data['news_view']=0;
 		$data['news_cmt']=0;
 
@@ -105,7 +105,7 @@ class NewsController extends Controller
 		$data['news_content'] = $request->news_content;
 		$data['item_topic_id'] = $request->list_item_topic;
 		$data['topic_id'] = $request->list_topic;
-		$data['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+		$data['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
 
 		$file_cu = $request->tencu;
 
@@ -261,7 +261,7 @@ class NewsController extends Controller
 		->with('show_view',$show_view)
 		->with('doitheme',$doitheme)
         ->with('tieude',$tieude)
-            ->with('link',$link)
+        ->with('link',$link)
         ->with('mota',$mota)
         ->with('anh',$anh)
         ->with('i',$dem);
