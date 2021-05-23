@@ -32,14 +32,14 @@
 			 }
 			 ?>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" width="550">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" >
 						  <thead>
 							  <tr>
 								  <th>Mã ID</th>
 								  <th>Tiêu đề tin </th>
 								  <th>Nội dung</th>
 								  <th>Số lượt xem</th>
-								  <th>Số lượt like</th>
+
 								  <th>Số lượt cmt</th>
 								  <th>Slug</th>
 								  <th>Ảnh lớn</th>
@@ -54,13 +54,13 @@
 							<tr>
 								<td>{{ $list_news-> news_id }}</td>
 								<td class="center">{{ $list_news->news_title }}</td>
-								<td class="center seo_content" style="width: 400px">{!!$list_news->news_content!!}</td>
+								<td class="center seo_content" style="width:300px">{!!$list_news->news_content!!}</td>
 								<td class="center">{{ $list_news->news_view }}</td>
-								<td class="center">{{ $list_news->news_like }}</td>
+
 								<td class="center">{{ $list_news->news_cmt }}</td>
 								<td class="center">{{ $list_news->news_slug }}</td>
 								<td class="center">
-									<img src="public/backend/img_title/{{$list_news->news_img_upload}}" height="100" width="100">
+									<img src="{{asset('backend/img_title/'.$list_news->news_img_upload)}}" width="200px">
 								</td>
 								<td class="center">{{ $list_news->topic_name }}</td>
 								<td class="center">{{ $list_news->item_topic_name }}</td>

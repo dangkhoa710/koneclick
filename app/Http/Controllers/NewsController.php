@@ -14,6 +14,7 @@ use File;
 
 
 
+
 class NewsController extends Controller
 {
     public function show_add_news(){
@@ -40,7 +41,7 @@ class NewsController extends Controller
 		// Lấy tên file
 		$file_name = $request->file('news_upimg')->getClientOriginalName();
 		// Lưu file vào thư mục upload với tên là biến $filename
-		$request->file('news_upimg')->move('public/backend/img_title/',$file_name);
+		$request->file('news_upimg')->move(public_path() .'/backend/img_title/',$file_name);
 		}
 
 		$data['news_img_upload'] = $file_name;
@@ -66,7 +67,7 @@ class NewsController extends Controller
 		$show_list_news = DB::table('tbl_news')
 		->join('tbl_topic','tbl_topic.topic_id','=','tbl_news.topic_id')
 		->join('tbl_item_topic','tbl_news.item_topic_id','=','tbl_item_topic.item_topic_id')
-		->orderby('tbl_news.news_id','desc')->get();
+		->get();
 
 
 		$manager_list_news = view('admin.show_list_news')
@@ -111,11 +112,18 @@ class NewsController extends Controller
 
 
 		if ($request->file('news_upimg')){
-		File::delete('public/backend/img_title/'.$file_cu);
+            $file_cu1 = public_path().'/backend/img_title/'.$file_cu;
+            if (file_exists($file_cu1)) {
+                unlink($file_cu1);
+            }
+//		File::delete(public_path().'backend/img_title/'.$file_cu);
+
 		// Lấy tên file
 		$file_name = $request->file('news_upimg')->getClientOriginalName();
 		// Lưu file vào thư mục upload với tên là biến $filename
-		$request->file('news_upimg')->move('public/backend/img_title/',$file_name);
+
+		$request->file('news_upimg')->move(public_path() .'/backend/img_title/',$file_name);
+
 		$data['news_img_upload']=$file_name;}else{$data['news_img_upload']=$file_cu;}
 
 
@@ -140,7 +148,7 @@ class NewsController extends Controller
 			$iti=$del->item_topic_id;
 
 		}
-		File::delete('public/backend/img_title/'.$ten);
+		File::delete(public_path() .'/backend/img_title/'.$ten);
 
 
 		$del_reply_comment = DB::table('tbl_reply_comment')

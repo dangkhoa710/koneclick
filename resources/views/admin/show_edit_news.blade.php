@@ -49,7 +49,7 @@
 							  <div class="controls">
 								<input class="input-file uniform_on" id="news_upimg" type="file" name="news_upimg" >
 							  </div>
-					 			 <img src="{{URL::to('public/backend/img_title/'.$edit_newss->news_img_upload)}}" height="200" width="200">
+					 			 <img src="{{asset('backend/img_title/'.$edit_newss->news_img_upload)}}" height="200" width="200">
 							  <input type="hidden" name="tencu" value="{{$edit_newss->news_img_upload}}">
 							</div>
 
