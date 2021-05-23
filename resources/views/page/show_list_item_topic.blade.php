@@ -6,7 +6,7 @@
                         <!-- Catagory -->
                         @foreach($item_topic_name as $key => $name)
                         <div class="archive-catagory">
-                            <h4><i class="fa fa-music" aria-hidden="true"></i> {{$ten = $name -> item_topic_name}}</h4>
+                            <h4>{{$ten = $name -> item_topic_name}}</h4>
                             <h4>{!!$name -> item_topic_describe!!}</h4>
                         </div>
                        <!--  {{$tongbaiviet=((int)($name->item_topic_amount))/8}} --> <!-- đếm số bài viết để chia trang -->

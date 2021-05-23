@@ -18,7 +18,7 @@
                         <h6 class="widget-title">Thông tin liên lạc</h6>
                         <!-- Contact Address -->
                         <div class="contact-address">
-                            <p>Bản quyền thuộc về Đăng Khoa</p>
+                            <p>Bản quyền thuộc về Đăng Khoa - Hoàng Sang - Minh Nhân</p>
                             <p>Phone: 0923570561</p>
                             <p>Email: mitomxao605@gmail.com</p>
                         </div>

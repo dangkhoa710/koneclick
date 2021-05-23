@@ -5,7 +5,7 @@
                     <div class="archive-catagory-view mb-50 d-flex align-items-center justify-content-between">
                         <!-- Catagory -->
                         <div class="archive-catagory">
-                            <h4><i class="fa fa-music" aria-hidden="true"></i> Kết quả tìm kiếm....</h4>
+                            <h4>Kết quả tìm kiếm....</h4>
                         </div>
 
                     </div>
