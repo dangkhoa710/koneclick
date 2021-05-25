@@ -53,12 +53,12 @@
 						  	@foreach($show_list_news as $key => $list_news)
 							<tr>
 								<td>{{ $list_news-> news_id }}</td>
-								<td class="center">{{ $list_news->news_title }}</td>
-								<td class="center seo_content" style="width:300px">{!!$list_news->news_content!!}</td>
+								<td class="center" style="width:150px">{{ $list_news->news_title }}</td>
+								<td class="center seo_content" style="width:250px">{!!$list_news->news_content!!}</td>
 								<td class="center">{{ $list_news->news_view }}</td>
 
 								<td class="center">{{ $list_news->news_cmt }}</td>
-								<td class="center">{{ $list_news->news_slug }}</td>
+								<td class="center" style="width:100px">{{ $list_news->news_slug }}</td>
 								<td class="center">
 									<img src="{{asset('backend/img_title/'.$list_news->news_img_upload)}}" width="200px">
 								</td>
