@@ -63,8 +63,9 @@
                                 <div class="col-12 col-lg-6">
                                     <!-- Post Content -->
                                     <div class="post-content mt-0">
-
-                                        @if($tl->mc_crawl==1)
+<!-- --------------------------------------------------------------------
+    
+ -->                                        @if($tl->mc_crawl==1)
                                         <div style="display: none">{{
                                             $response[$i] = Http::withHeaders([
                                             'Content-Type' => 'application/json',
@@ -73,6 +74,8 @@
                                         }}</div>
 {{--                                        @if($response[$i]=="Doi song")<div style="display: none">{{$response[$i]="Chinhtri Xahoi"}}</div>@endif--}}
 
+<!-- --------------------------------------------------------------------
+ -->    
                                         <a href="#" class="
                                         @foreach($laymau2 as $key => $lm2)
                                         @if((strtolower(str_replace(" ","-",$response[$i])))==$key)

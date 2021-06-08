@@ -10,6 +10,7 @@ session_start();
 class AdminController extends Controller
 {
     public function index(){
+//        dd(123);
     	$admin_id = Session::get('admin_id');
 	    if($admin_id){
 		return Redirect::to('dashboard');
@@ -33,7 +34,7 @@ class AdminController extends Controller
 		['password',$admin_password],
 		],['user_permision',"2"])->first();
 
-		if($result){			
+		if($result){
 		Session::put('admin_name',$result->name);
 		Session::put('admin_id',$result->id);
 		return Redirect::to('/dashboard');
